@@ -20,7 +20,7 @@ jobs:
       - name: Checkout checkbox monorepo
         uses: actions/checkout@v3
         with:
-          repository: canonical/checkbox
+          repository: canonical/checkbox-staging
           fetch-depth: 0
       - name: Check for new commits
         run: |
@@ -47,7 +47,7 @@ jobs:
         env:
           LP_CREDENTIALS: ${{ secrets.LP_CREDS }}
         run: |
-          tools/release/release_deb_monorepo.py build
+          tools/release/release_deb_monorepo.py build --staging
       - name: Open a new release for development
         if: fromJson(inputs.config).mode == 'stable'
         run: |
